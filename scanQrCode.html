@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>QRCode Scan</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+       
+</head>
+<body>
+    <video id="webcam"></video>
+    
+
+    <script>
+        const scanner = new Instascan.Scanner({
+            video : document.getElementById('webcan')
+        })
+        scanner.addListener('scan', content => {
+            console.log(content);
+        })
+        Instascan.Camera.getCameras().then( cameras =>{
+            if(cameras.length > 0){
+                scanner.start(cameras[0]);
+            }
+        })
+    </script>
+</body>
+<script src='./instascan.min.js'></script>
+</html>
